@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#16181d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PR Strength">
+  <title>PR Strength</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>PR Strength</h1>
+    <button id="menu-btn" class="icon-btn" aria-label="Backup and settings">⋯</button>
+  </header>
+
+  <main>
+    <!-- Log workout -->
+    <section id="view-log" class="view active" aria-labelledby="tab-log">
+      <form id="log-form" autocomplete="off">
+        <label class="field">
+          <span>Exercise</span>
+          <select id="exercise-select" required></select>
+        </label>
+
+        <div id="new-exercise-wrap" class="field hidden">
+          <span>New exercise name</span>
+          <input id="new-exercise-name" type="text" placeholder="e.g. Bench press" maxlength="60">
+        </div>
+
+        <label class="field">
+          <span>Date</span>
+          <input id="log-date" type="date" required>
+        </label>
+
+        <div class="sets-head">
+          <span>Set</span><span>Weight (kg)</span><span>Reps</span><span></span>
+        </div>
+        <ol id="sets-list" class="sets-list"></ol>
+
+        <button type="button" id="add-set-btn" class="btn secondary">+ Add set</button>
+        <button type="submit" class="btn primary">Save workout</button>
+        <p id="log-msg" class="msg" role="status"></p>
+      </form>
+    </section>
+
+    <!-- PRs -->
+    <section id="view-prs" class="view" aria-labelledby="tab-prs">
+      <div id="pr-empty" class="empty hidden">No exercises logged yet. Log a workout to see your PRs.</div>
+      <div id="pr-table" class="pr-table" role="table"></div>
+      <p class="hint">Tap an exercise to see its full history.</p>
+    </section>
+
+    <!-- Exercise history -->
+    <section id="view-history" class="view">
+      <button id="history-back" class="btn link">← Back to PRs</button>
+      <h2 id="history-title"></h2>
+      <ul id="history-list" class="history-list"></ul>
+      <div class="danger-zone">
+        <button id="rename-exercise" class="btn secondary">Rename exercise</button>
+        <button id="delete-exercise" class="btn danger">Delete exercise</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" role="tablist">
+    <button id="tab-log" role="tab" class="tab active" data-view="view-log" aria-selected="true">
+      <span class="tab-icon">＋</span>Log workout
+    </button>
+    <button id="tab-prs" role="tab" class="tab" data-view="view-prs" aria-selected="false">
+      <span class="tab-icon">🏆</span>View PRs
+    </button>
+  </nav>
+
+  <dialog id="menu-dialog">
+    <h2>Backup</h2>
+    <p>Your data is stored only on this device. Export a backup now and then, and import it if you switch phones.</p>
+    <button id="export-btn" class="btn secondary">Export backup</button>
+    <label class="btn secondary file-btn">
+      Import backup
+      <input id="import-input" type="file" accept="application/json,.json">
+    </label>
+    <button id="close-menu" class="btn link">Close</button>
+  </dialog>
+
+  <template id="set-row-tpl">
+    <li class="set-row">
+      <span class="set-no"></span>
+      <input class="set-weight" type="number" inputmode="decimal" step="any" min="0" placeholder="kg" required>
+      <input class="set-reps" type="number" inputmode="numeric" step="1" min="1" placeholder="reps" required>
+      <button type="button" class="icon-btn remove-set" aria-label="Remove set">✕</button>
+    </li>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
