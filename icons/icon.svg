@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#16181d"/>
+  <g fill="#ff7a3d">
+    <rect x="96" y="176" width="44" height="160" rx="10"/>
+    <rect x="372" y="176" width="44" height="160" rx="10"/>
+    <rect x="148" y="206" width="32" height="100" rx="8"/>
+    <rect x="332" y="206" width="32" height="100" rx="8"/>
+    <rect x="60" y="238" width="36" height="36" rx="6"/>
+    <rect x="416" y="238" width="36" height="36" rx="6"/>
+    <rect x="180" y="242" width="152" height="28" rx="6"/>
+  </g>
+  <text x="256" y="420" font-family="Helvetica, Arial, sans-serif" font-size="88" font-weight="700" fill="#f1f2f4" text-anchor="middle">PR</text>
+</svg>
